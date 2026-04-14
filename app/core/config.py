@@ -1,49 +1,22 @@
-from functools import lru_cache
-from typing import (
-    Any,
-    Dict,
-    Optional,
-)
-from pydantic import (
-    BaseSettings,
-    PostgresDsn,
-    validator
-)
-
+from pydantic_settings import BaseSettings, SettingsConfigDict
+from typing import Optional
 
 class Settings(BaseSettings):
-    PROJECT_NAME: str = "FastAPI School Management System"
+    PROJECT_NAME: str = "Vidyalaya - Smart School Management System"
     API_V1_STR: str = "/api/v1"
     
-    DB_HOST: str
-    DB_USER: str
-    DB_PASSWORD: str
-    DB_NAME: str
+    # Secret Key for JWT
+    SECRET_KEY: str = "DEVELOPMENT_SECRET_KEY_CHANGE_ME" 
+    ALGORITHM: str = "HS256"
+    ACCESS_TOKEN_EXPIRE_MINUTES: int = 60 * 24 * 7  # 7 days
 
-    SQLALCHEMY_DATABASE_URI: Optional[PostgresDsn] = None
+    # Default to SQLite for a zero-setup showcase experience
+    SQLALCHEMY_DATABASE_URI: str = "sqlite:///./vidyalaya.db"
 
-    @validator("SQLALCHEMY_DATABASE_URI", pre=True)
-    def assemble_db_connection(
-        cls, v: Optional[str], values: Dict[str, Any]
-    ) -> Any:
-        if isinstance(v, str):
-            return v
-        return PostgresDsn.build(
-            scheme="postgresql",
-            user=values.get("DB_USER"),
-            password=values.get("DB_PASSWORD"),
-            host=values.get("DB_HOST"),
-            path=f"/{values.get('DB_NAME') or  ''}",
-        )
+    model_config = SettingsConfigDict(
+        case_sensitive=True,
+        env_file=".env",
+        extra="ignore"
+    )
 
-    class Config:
-        case_sensitive = True
-        env_file = ".env"
-
-
-@lru_cache
-def get_settings():
-    return Settings()
-
-
-settings = get_settings()
+settings = Settings()

@@ -1,58 +1,79 @@
-# School Management System API
+# 🏫 Vidyalaya - Smart School Management System
 
-## Features
-- Register a new student.
-- Add study materials.
-- Add classes.
-- Add academic years.
-- Recording the absence of students.
-- Recording students' grades
-- Students promotion.
-- User Login.
-- User permissions.
+[![FastAPI](https://img.shields.io/badge/FastAPI-005571?style=for-the-badge&logo=fastapi)](https://fastapi.tiangolo.com/)
+[![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)](https://www.python.org/)
+[![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)](https://www.docker.com/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
 
-## Getting Started
+**Vidyalaya** is a production-ready Student Management System built with a focus on speed, security, and professional administrative workflows. It transforms school operations into a streamlined, digital experience.
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+---
 
-It's best to install Python projects in a Virtual Environment. Once you have set up a VE, clone this project
+## ✨ Key Features
 
+- **🛡️ Secure Authentication**: JWT-based authentication with distinct Role-Based Access Control (RBAC) for Admins and Teachers.
+- **📊 Admin Dashboard**: A clean, minimalist web interface for managing student registries without the clutter of traditional systems.
+- **🔗 Standardized API**: Fully documented RESTful API endpoints with consistent response envelopes and error handling.
+- **🚀 Zero-Setup Deployment**: Orchestrated with Docker and Docker Compose for one-command deployment.
+- **📋 Student Registry**: Comprehensive management of students, grades, subjects, and registration history.
+
+---
+
+## 🛠️ Technical Stack
+
+- **Backend**: [FastAPI](https://fastapi.tiangolo.com/) (Python 3.14 compatible)
+- **ORM**: [SQLAlchemy](https://www.sqlalchemy.org/) with [Alembic](https://alembic.sqlalchemy.org/) for migrations
+- **Security**: Bcrypt password hashing & JOSE (JWT) token management
+- **Frontend**: Vanilla JavaScript and CSS (Modern, minimalist aesthetic)
+- **Database**: SQLite (Default for zero-setup), configurable to PostgreSQL
+- **Containerization**: Docker & Docker Compose
+
+---
+
+## 🚀 Getting Started
+
+### 📦 Using Docker (Recommended)
+Launch the entire system in seconds:
+```bash
+docker-compose up -d
 ```
-git clone https://github.com/Ho011/small_sms_api.git
-```
+Access the dashboard at `http://localhost:8000/dashboard` and documentation at `http://localhost:8000/docs`.
 
-```
-cd small_sms_api
-```
+### 🐍 Local Development
+1. **Initialize Environment**:
+   ```bash
+   py -m venv venv
+   .\venv\Scripts\activate
+   ```
+2. **Install Dependencies**:
+   ```bash
+   pip install -r requirements.txt
+   ```
+3. **Run Migrations**:
+   ```bash
+   alembic upgrade head
+   ```
+4. **Start Server**:
+   ```bash
+   uvicorn app.main:app --reload
+   ```
 
-```
-pip install -r requirements.txt
-```
+---
 
-### Environment Variables
+## 📖 API Documentation
 
-The application uses an .env file to manage environment varialbes. A `.env.example` file is included in the project for your modification. (Remember to rename the file to `.env` in order for your environment variables to be read.)
+Once the server is running, explore the interactive documentation powered by Swagger UI:
+- **Interactive Docs**: [http://localhost:8000/docs](http://localhost:8000/docs)
+- **Alternatice Docs**: [http://localhost:8000/redoc](http://localhost:8000/redoc)
 
-The configuration can be changed to use the OS environment based on the FastAPI Settings documentation if you prefer.
+---
 
+## 🤝 Contribution & Portfolio
 
-```
-alembic upgrade head
-```
+This project is part of my professional engineering portfolio. It demonstrates advanced concepts in:
+- API design and dependency injection
+- Secure authentication flows and encryption
+- Database modeling and migration management
+- Containerized deployment and CI/CD ready infrastructure
 
-## Note
-
-**you must create a postgres database the same as your env, before running alembic upgrade head.**
-
-
-### Get Up and running
-
-Once the prerequisites are met, The following steps can be used to get the application up and running. All commands are run from the root directory of the project
-
-```
-uvicorn app.main:app --reload
-```
-
-## Note
-This project is in progress, there may be several bugs.
-So if you discover that there are any errors, please fix them, and if you want to improve or add something, your **contribution is welcome.**
+Developed by **Suraj Mohurle**. ✨
